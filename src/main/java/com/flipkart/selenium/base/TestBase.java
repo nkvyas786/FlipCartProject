@@ -1,19 +1,22 @@
 package com.flipkart.selenium.base;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import com.flipkart.selenium.utils.TestUtil;
 import org.testng.annotations.Test;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class TestBase {
 
     public static WebDriver driver;
     public static Properties prop;
+    protected static Logger logger;
+
 
 
 
@@ -23,6 +26,8 @@ public class TestBase {
         FileInputStream fis;
         fis = new FileInputStream("/Users/nivivyas/Documents/FlipCartProject/src/main/java/com/flipkart/selenium/config/GlobalData.properties");
         prop.load(fis);
+        logger = Logger.getLogger(TestBase.class.getName());
+        PropertyConfigurator.configure("/Users/nivivyas/Documents/FlipCartProject/src/main/java/com/flipkart/selenium/config/log4j.properties");
 
     } catch (FileNotFoundException e) {
         e.printStackTrace();
@@ -45,6 +50,7 @@ public class TestBase {
             if (browserName.equalsIgnoreCase("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
+                logger.info("*******************Chrome Browser Launched************************");
             }
             else if (browserName.equalsIgnoreCase("firefox")) {
             }

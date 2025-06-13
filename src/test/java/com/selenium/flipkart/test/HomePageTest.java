@@ -13,6 +13,13 @@ public class HomePageTest extends TestBase {
 
     HomePage homePage;
 
+    public HomePageTest() throws IOException {
+        super();
+    }
+
+
+
+
     @BeforeMethod
     public void setUp() throws IOException {
         initialization();
@@ -26,21 +33,27 @@ public class HomePageTest extends TestBase {
         Assert.assertEquals(actualTitle, "Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!", "Title is not matching");
     }
 
-    @Test
+    @Test(priority =2)
     public void verifyHomepageNumberOfLinks(){
         homePage.homePageLink();
     }
 
-    @Test
+    @Test(priority =3)
     public void verifyHomePageNumberOfImgs(){
         homePage.homePageAllImages();
 
     }
+    @Test(priority =4)
+    public void clickOnDSLR() throws InterruptedException {
+        homePage.selectDSLR();
 
+    }
 
-
-
-
+    @Test(priority =5)
+    public void getAllMobileWithSortedPrice() throws InterruptedException {
+        homePage.getMinAndMaxMobilePrice();
+        Thread.sleep(2000);
+    }
 
     @AfterMethod
     public void closeBrw() {
