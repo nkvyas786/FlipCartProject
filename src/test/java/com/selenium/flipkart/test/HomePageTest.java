@@ -17,13 +17,12 @@ public class HomePageTest extends TestBase {
         super();
     }
 
-
-
-
     @BeforeMethod
     public void setUp() throws IOException {
         initialization();
         homePage = new HomePage();
+
+
     }
 
     @Test(priority  =1)
@@ -54,6 +53,14 @@ public class HomePageTest extends TestBase {
         homePage.getMinAndMaxMobilePrice();
         Thread.sleep(2000);
     }
+
+    @Test(priority =6)
+    public void selectRangeSlider() throws InterruptedException {
+        homePage.setPriceRange();
+
+    }
+
+
 
     @AfterMethod
     public void closeBrw() {
